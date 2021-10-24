@@ -20,7 +20,6 @@ const BookingRoutes = require('./routes/bookingRoutes');
 const ViewRoutes = require('./routes/viewRoutes');
 
 const app = express();
-app.use(cors());
 app.use(compression());
 
 //=== for heroku https
@@ -65,15 +64,11 @@ const Limiter = rateLimit({
 
 app.use('/api', Limiter);
 
-//-===== Test
-app.use((req, res, next) => {
-  req.requestTime = new Date().toISOString();
-  console.log('..........................................');
-  console.log('cookies From app.js::', req.cookies.jwt);
-  console.log('..........................................');
+//==== allow cross origin access for the POST and GET
+app.use(cors());
 
-  next();
-});
+//=== access cross-origin access for the pre-flag options like delete, put, patch
+app.options('*', cors());
 
 //===Routes
 app.use('/api/v1/tours', ToursRoutes);
