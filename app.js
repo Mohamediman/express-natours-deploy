@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHanlder = require('./controllers/errorControler');
@@ -20,6 +21,10 @@ const ViewRoutes = require('./routes/viewRoutes');
 
 const app = express();
 app.use(cors());
+app.use(compression());
+
+//=== for heroku https
+app.enable('trust proxy');
 
 //=== Middlewares
 //===> Set the secure HTTP headers

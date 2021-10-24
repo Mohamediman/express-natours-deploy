@@ -59,3 +59,11 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
+
+//==== HANDLE THE HEROKU DYNO SIGTERM AND CLOSE THE SERVER GRACEFULLY
+process.on('SIGTERM', () => {
+  console.log('Heroku Sigterm Server closure');
+  server.close(() => {
+    console.log('Heroku Sigterm, the server is closing Gracefully');
+  });
+});
