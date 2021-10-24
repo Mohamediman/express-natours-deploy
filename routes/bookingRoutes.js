@@ -6,16 +6,20 @@ const router = express.Router();
 
 router.use(authController.protect);
 
+router.get(
+  '/checkout-session/:tourId',
+  authController.protect,
+  bookingController.getCheckoutSession
+);
 
-router.get('/checkout-session/:tourId', 
-        authController.protect, 
-        bookingController.getCheckoutSession);
-router.get('/my-tours/:tourId/:userId/:price',
-        bookingController.createBookingCheckout);
+// router.get('/my-tours/:tourId/:userId/:price',
+//         bookingController.createBookingCheckout);
 
-router.get('/my-tours',
-      authController.protect,
-      bookingController.getMyBookings);
+router.get(
+  '/my-tours',
+  authController.protect,
+  bookingController.getMyBookings
+);
 
 router.use(authController.restrictTo('admin', 'lead-guide'));
 

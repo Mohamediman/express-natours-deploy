@@ -17,6 +17,7 @@ const ToursRoutes = require('./routes/tours');
 const UsersRoutes = require('./routes/users');
 const ReviewRoutes = require('./routes/reviews');
 const BookingRoutes = require('./routes/bookingRoutes');
+const BookingController = require('./controllers/bookingController');
 const ViewRoutes = require('./routes/viewRoutes');
 
 const app = express();
@@ -28,6 +29,14 @@ app.enable('trust proxy');
 //=== Middlewares
 //===> Set the secure HTTP headers
 app.use(helmet());
+
+//-==== We need this in row format and not in json, so we have to put here instead of the bookign router
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  BookingController.webhookCheckout
+);
+
 //===> Bodyperser ==> Reading the data from the body
 app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
