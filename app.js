@@ -93,14 +93,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 
-//==== Serve all the html routes
-// Serving static files
-// app.use(express.static(path.join(__dirname, 'build')));
-
-// app.get('*', (req, res) =>
-//   res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
-// );
-
 //=== handle all unhandle route error
 app.all('*', (req, res, next) => {
   //=== if anything is passed into the next func, it will assume its error and skips all the other middlewares and goes directly to the global error handling middleware
