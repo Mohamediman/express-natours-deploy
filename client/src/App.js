@@ -28,8 +28,8 @@ const App = () => {
   // console.log('get cookie without passing a name:', Cookies.get());
   const [cookies, setCookie, removeCookie, getCookie] = useCookies(['jwt']);
 
-  console.log('get cookie with name from react-Cookie:', getCookie('jwt'));
-  console.log('get cookie with name from react-Cookie:', cookies);
+  // console.log('get cookie with name from react-Cookie:', getCookie('jwt'));
+  console.log('get cookie using cookies variable from react-Cookie:', cookies);
 
   if (getCookie) {
     console.log('cookies under the if');
