@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Cookies from 'js-cookie';
-import { useCookies, Cookies } from 'react-cookie';
+import { Cookies } from 'react-cookie';
 
 import Headers from './components/header/Header';
 import Tours from './components/tours/Tours';
@@ -25,8 +25,6 @@ import store from './Store';
 import './App.css';
 
 const App = () => {
-  const [cookies, setCookie] = useCookies(['jwt']);
-
   // console.log('get cookie without passing a name:', Cookies.get());
 
   console.log('get cookie without name from react-Cookie:', Cookies.get());
