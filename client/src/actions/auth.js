@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import {
   USER_LOADED,
   CLEAR_USER,
@@ -42,14 +42,14 @@ export const login = (email, password) => async (dispatch) => {
   try {
     const res = await axios.post('/api/v1/users/login', body, config);
     dispatch(setAlert('Success Login', 'success'));
-    // Cookies.set('jwt', res.data.token, { expires: 7 });
+    Cookies.set('jwt', res.data.token, { expires: 7 });
     dispatch({
       type: USER_LOADED,
       payload: res.data,
     });
   } catch (err) {
     // dispatch(setAlert(err.response.data.message, 'error'))
-    // Cookies.remove('jwt');
+    Cookies.remove('jwt');
     console.log(err.response);
     dispatch({ type: CLEAR_USER });
     dispatch({ type: AUTH_ERROR });
@@ -68,14 +68,14 @@ export const register = (newUser) => async (dispatch) => {
   try {
     const res = await axios.post('/api/v1/users/signup', body, config);
     dispatch(setAlert('Success Register', 'success'));
-    // Cookies.set('jwt', res.data.token, { expires: 7 });
+    Cookies.set('jwt', res.data.token, { expires: 7 });
     dispatch({
       type: USER_LOADED,
       payload: res.data,
     });
   } catch (err) {
     dispatch(setAlert(err.response.data.message, 'error'));
-    // Cookies.remove('jwt');
+    Cookies.remove('jwt');
     dispatch({ type: CLEAR_USER });
     dispatch({ type: AUTH_ERROR });
   }
@@ -86,7 +86,7 @@ export const logout = () => (dispatch) => {
   console.log('LOgout called from the link....');
   console.log('Remove the jwt from the broweer...');
 
-  // Cookies.remove('jwt');
+  Cookies.remove('jwt');
   dispatch({ type: USER_LOGOUT });
 };
 
