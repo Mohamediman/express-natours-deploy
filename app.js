@@ -5,6 +5,7 @@ const rateLimit = require('express-rate-limit');
 const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 // const xss = require('xss-clean');
+const bodyParser = require('body-parser');
 const hpp = require('hpp');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -33,9 +34,14 @@ app.enable('trust proxy');
 //-==== We need this in row format and not in json, so we have to put here instead of the bookign router
 app.post(
   '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
+  bodyParser.raw({ type: 'application/json' }),
   BookingController.webhookCheckout
 );
+// app.post(
+//   '/webhook-checkout',
+//   express.raw({ type: 'application/json' }),
+//   BookingController.webhookCheckout
+// );
 
 //===> Bodyperser ==> Reading the data from the body
 app.use(express.json({ limit: '10kb' }));
