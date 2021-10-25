@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "content": "default-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval' https://js.stripe.com/ blob: data: gap:; script-src-elem * 'unsafe-inline' 'unsafe-eval' https://api.stripe.com/ https://js.stripe.com/ blob: gap:; worker-src * 'unsafe-eval' blob: data: gap:; style-src * 'unsafe-eval' blob: data: gap:; img-src * 'unsafe-eval' blob: data: gap:; connect-src 'unsafe-eval' https://api.stripe.com https://js.stripe.com/ https://api.mapbox.com/ https://events.mapbox.com/ https://fonts.googleapis.com blob: data: gap:; frame-src * https://js.stripe.com https://hooks.stripe.com blob: data: gap:;",
   "dependencies": {
     "@craco/craco": "^6.3.0",
     "@stripe/react-stripe-js": "^1.4.1",
