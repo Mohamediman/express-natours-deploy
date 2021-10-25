@@ -45,7 +45,7 @@ app.use(cookieParser());
 app.use(mongoSanitize());
 
 //===== DATA Sanitization against xss
-app.use(xss());
+// app.use(xss());
 
 //===== Prevent against parameter Population
 app.use(
