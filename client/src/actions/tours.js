@@ -8,7 +8,6 @@ import {
   GET_TOUR,
   TOUR_ERRORS,
   LOAD_TOUR,
-  BOOKTOUR,
 } from './types';
 
 import setAuthtoken from '../utils/SetAuthToken';
@@ -53,6 +52,7 @@ export const bookTour = (id) => async (dispatch) => {
   }
   try {
     const session = await axios.get(`/api/v1/bookings/checkout-session/${id}`);
+    console.log('Session Object:', session);
     //===Redirect to stripe Checkout page
     await (
       await stripePromise
