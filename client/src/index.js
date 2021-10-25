@@ -1,5 +1,6 @@
 import ReactDOM from 'react-dom';
 import App from './App';
+import { CookiesProvider } from 'react-cookie';
 
 // trustedTypes.createPolicy('default', {
 //     createScriptURL: (input) => {
@@ -10,5 +11,8 @@ import App from './App';
 //     }
 //   });
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
+ReactDOM.render(
+  <CookiesProvider>
+    <App />, document.getElementById('root')
+  </CookiesProvider>
+);
