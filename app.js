@@ -30,8 +30,6 @@ app.enable('trust proxy');
 //===> Set the secure HTTP headers
 // app.use(helmet());
 
-//-==== We need this in row format and not in json, so we have to put here instead of the bookign router
-
 app.post(
   '/webhook-checkout',
   express.raw({ type: 'application/json' }),
