@@ -23,6 +23,7 @@ import store from './Store';
 import './App.css';
 
 const App = () => {
+  console.log('get cookie without passing a name:', Cookies.get());
   if (Cookies.get('jwt')) {
     console.log('cookies under the if');
     console.log(Cookies.get('jwt'));
