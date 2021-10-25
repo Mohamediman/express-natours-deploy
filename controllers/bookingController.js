@@ -3,14 +3,15 @@ const Tour = require('../models/tourModel');
 const User = require('../models/userModel');
 const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 const factory = require('./handlerfactory');
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
-  console.log('****************************************');
-  console.log('Req session object', req.body);
   // 1) Get the currently booked tour
   const tour = await Tour.findById(req.params.tourId);
-  // const tour = await Tour.findById('5c88fa8cf4afda39709c2951');
+  if (!tour) {
+    return next(new AppError('No Tour Found', 404));
+  }
 
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
@@ -33,6 +34,9 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     ],
   });
 
+  if (!session) {
+    return next(new AppError('No session Found', 404));
+  }
   // 3) Create session as response
   res.status(200).json({
     status: 'success',
