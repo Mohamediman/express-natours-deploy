@@ -27,6 +27,7 @@ import './App.css';
 const App = () => {
   console.log('get cookie without passing a name:', Cookies.get());
   console.log('jwt cookie using get cookie:', Cookies.get('jwt'));
+  console.log('Document cookies:', document.cookie);
 
   if (Cookies.get('jwt')) {
     console.log('cookies under the if');
