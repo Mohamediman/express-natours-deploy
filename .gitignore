@@ -2,8 +2,6 @@ node_modules
 .config.env
 config.env
 client/node_modules
-client/src
-client/public
 client/craco.config.js
 
 
