@@ -43,7 +43,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     session,
   });
 
-  res.redirect(`/`);
+  // res.redirect(`/`);
 });
 
 const createBookingCheckout = async (session) => {
