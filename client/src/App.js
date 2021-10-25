@@ -27,16 +27,13 @@ import './App.css';
 const App = () => {
   // console.log('get cookie without passing a name:', Cookies.get());
 
-  console.log('get cookie without name from react-Cookie:', Cookies.get());
+  console.log('get cookie with name from react-Cookie:', Cookies.get('jwt'));
 
   if (Cookies.get('jwt')) {
     console.log('cookies under the if');
     console.log(Cookies.get('jwt'));
-    console.log('cookies under the if');
     setAuthtoken(Cookies.get('jwt'));
   }
-
-  console.log('Cookies check from the App with jwt name:', Cookies.get('jwt'));
 
   // if (Cookies.get('jwt')) {
   //   store.dispatch(loadUser());
