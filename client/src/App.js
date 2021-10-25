@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 // import Cookies from 'js-cookie';
-import { Cookies } from 'react-cookie';
+import { useCookies } from 'react-cookie';
 
 import Headers from './components/header/Header';
 import Tours from './components/tours/Tours';
@@ -26,14 +26,21 @@ import './App.css';
 
 const App = () => {
   // console.log('get cookie without passing a name:', Cookies.get());
+  const [cookies, setCookie, removeCookie, getCookie] = useCookies(['jwt']);
 
-  console.log('get cookie with name from react-Cookie:', Cookies.get('jwt'));
+  console.log('get cookie with name from react-Cookie:', getCookie('jwt'));
+  console.log('get cookie with name from react-Cookie:', cookies);
 
-  if (Cookies.get('jwt')) {
+  if (getCookie) {
     console.log('cookies under the if');
-    console.log(Cookies.get('jwt'));
-    setAuthtoken(Cookies.get('jwt'));
+    console.log(cookies);
+    setAuthtoken(cookies);
   }
+  // if (Cookies.get('jwt')) {
+  //   console.log('cookies under the if');
+  //   console.log(Cookies.get('jwt'));
+  //   setAuthtoken(Cookies.get('jwt'));
+  // }
 
   // if (Cookies.get('jwt')) {
   //   store.dispatch(loadUser());
