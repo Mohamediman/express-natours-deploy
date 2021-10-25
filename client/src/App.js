@@ -8,7 +8,6 @@ import TourDetails from './components/tourDetails/TourDetails';
 import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import Account from './components/account/Account';
-import BookingSuccess from './components/bookings/BookingSuccess';
 import MyBookings from './components/bookings/MyBookings';
 
 import Footer from './components/footer/Footer';
@@ -48,12 +47,6 @@ const App = () => {
             path="/bookings/my-tours"
             component={MyBookings}
           />
-          <Route
-            exact
-            path="my-tours/:tourId/:userId/:price"
-            component={BookingSuccess}
-          />
-          <Route exact path="/my-tours" component={BookingSuccess} />
           <Route exact path="/" component={Tours} />
           <Route exact path="/tour/:slug" component={TourDetails} />
           <Route exact path="/login" component={Login} />

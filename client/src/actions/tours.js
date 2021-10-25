@@ -53,9 +53,6 @@ export const bookTour = (id) => async (dispatch) => {
   }
   try {
     const session = await axios.get(`/api/v1/bookings/checkout-session/${id}`);
-
-    console.log('Session object:', session);
-
     //===Redirect to stripe Checkout page
     await (
       await stripePromise
