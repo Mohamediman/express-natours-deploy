@@ -33,9 +33,10 @@ const App = () => {
 
   console.log('Cookies check from the App:', Cookies.get('jwt'));
 
-  if (Cookies.get('jwt')) {
-    store.dispatch(loadUser());
-  }
+  // if (Cookies.get('jwt')) {
+  //   store.dispatch(loadUser());
+  // }
+  store.dispatch(loadUser());
 
   // if(Cookies.get('jwt' !== " " )) {
   //   store.dispatch(loadUser());
