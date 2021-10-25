@@ -48,14 +48,14 @@ export const getTour = (slug) => async (dispatch) => {
   }
 };
 export const bookTour = (id) => async (dispatch) => {
-  console.log('BOOKTOUR IS CALLED; TOURID IS:', id);
   if (localStorage.token) {
     setAuthtoken(localStorage.token);
   }
-
   try {
     const session = await axios.get(`/api/v1/bookings/checkout-session/${id}`);
+
     console.log('Session object:', session);
+
     //===Redirect to stripe Checkout page
     await (
       await stripePromise
