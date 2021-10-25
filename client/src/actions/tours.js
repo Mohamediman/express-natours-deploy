@@ -48,6 +48,7 @@ export const getTour = (slug) => async (dispatch) => {
   }
 };
 export const bookTour = (id) => async (dispatch) => {
+  console.log('BOOKTOUR IS CALLED; TOURID IS:', id);
   if (localStorage.token) {
     setAuthtoken(localStorage.token);
   }
@@ -62,7 +63,7 @@ export const bookTour = (id) => async (dispatch) => {
       sessionId: session.data.session.id,
     });
   } catch (err) {
-    console.log(err.response);
+    console.log('SESSION ERROR MESSAGE:', err.response);
   }
 };
 
