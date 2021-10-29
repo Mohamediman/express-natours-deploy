@@ -3,6 +3,7 @@ import Tour from '../tours/Tour';
 
 import { connect } from 'react-redux';
 import { getAllBooking } from '../../redux/bookings/bookings.actions';
+import { selectMybookings } from '../../redux/bookings/bookings.selectors';
 
 const MyBookings = ({ getAllBooking, tours }) => {
   useEffect(() => {
@@ -20,7 +21,7 @@ const MyBookings = ({ getAllBooking, tours }) => {
   );
 };
 const mapStateToProps = (state) => ({
-  tours: state.bookings.toursBooked,
+  tours: selectMybookings(state),
 });
 
 export default connect(mapStateToProps, { getAllBooking })(MyBookings);

@@ -1,9 +1,16 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+
+import { createStructuredSelector } from 'reselect';
+
 import { connect } from 'react-redux';
 import { logout } from './../../redux/auth/auth.action';
+import {
+  selectAuthenticated,
+  selectAuthUser,
+} from '../../redux/auth/auth.selectors';
 
-const NavElement = ({ auth: { isAuthenticated, user }, logout }) => {
+const NavElement = ({ isAuthenticated, user, logout }) => {
   const userLinks = (
     <nav className="nav nav--user">
       <a href="/" className="nav__el nav__el--logout" onClick={logout}>
@@ -35,7 +42,8 @@ const NavElement = ({ auth: { isAuthenticated, user }, logout }) => {
 
   return <Fragment>{!isAuthenticated ? guestLinks : userLinks}</Fragment>;
 };
-const mapStateToProps = (state) => ({
-  auth: state.auth,
+const mapStateToProps = createStructuredSelector({
+  isAuthenticated: selectAuthenticated,
+  user: selectAuthUser,
 });
 export default connect(mapStateToProps, { logout })(NavElement);

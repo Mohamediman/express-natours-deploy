@@ -5,6 +5,7 @@ import { setAlert } from '../../redux/alerts/setAlerts.action';
 
 import { connect } from 'react-redux';
 import { register } from '../../redux/auth/auth.action';
+import { selectAuthenticated } from '../../redux/auth/auth.selectors';
 
 const Signup = ({ isAuthenticated, register, setAlert }) => {
   const [formData, setFormData] = useState({
@@ -110,7 +111,7 @@ Signup.propTypes = {
   register: PropTypes.func,
 };
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: selectAuthenticated(state),
 });
 
 export default connect(mapStateToProps, { register, setAlert })(Signup);

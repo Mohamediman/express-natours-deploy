@@ -6,6 +6,7 @@ import LogoWhite from './../../img/logo-white.png';
 
 import { connect } from 'react-redux';
 import { loadUser } from '../../redux/auth/auth.action';
+import { selectAuthenticated } from '../../redux/auth/auth.selectors';
 
 const Header = ({ isAuthenticated, loadUser }) => {
   useEffect(() => {
@@ -35,6 +36,6 @@ const Header = ({ isAuthenticated, loadUser }) => {
   );
 };
 const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  isAuthenticated: selectAuthenticated(state),
 });
 export default connect(mapStateToProps, { loadUser })(Header);
