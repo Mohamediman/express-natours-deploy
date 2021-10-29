@@ -1,0 +1,7 @@
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const USER_LOADED = 'USER_LOADED';
+export const UPDATE_CURRENT_USER = 'UPDATE_CURRENT_USER';
+export const UPDATE_USER_PASSWORD = 'UPDATE_USER_PASSWORD';
+export const USER_LOGOUT = 'USER_LOGOUT';
+export const CLEAR_USER = 'CLEAR_USER';
+export const AUTH_ERROR = 'AUTH_ERROR';

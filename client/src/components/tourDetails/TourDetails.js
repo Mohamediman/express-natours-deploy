@@ -1,7 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import { v4 as uuidv4 } from 'uuid';
 import TourHeader from './TourHeader';
 import TourDescription from './TourDescription';
@@ -9,7 +7,7 @@ import TourFactsAndGuides from './TourFactsAndGuides';
 import TourReview from './TourReview';
 import TourSectionPictures from './TourSectionPictures';
 import TourMap from './TourMap';
-// import TourGuide from './TourGuide'
+
 import LogoWhite from '../../img/logo-white.png';
 
 import { connect } from 'react-redux';
@@ -22,7 +20,6 @@ const TourDetails = ({
   bookTour,
   getTour,
 }) => {
-  // console.log("Cookie from Details page:", Cookies.get('jwt'))
   useEffect(() => {
     getTour(match.params.slug);
     //eslint-disable-next-line

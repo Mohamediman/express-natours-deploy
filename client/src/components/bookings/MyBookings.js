@@ -1,27 +1,26 @@
-import React,{ useEffect } from 'react'
-import Tour from '../tours/Tour'
+import React, { useEffect } from 'react';
+import Tour from '../tours/Tour';
 
-
-import { connect } from 'react-redux'
-import { getAllBooking } from '../../actions/bookings'
+import { connect } from 'react-redux';
+import { getAllBooking } from '../../redux/bookings/bookings.actions';
 
 const MyBookings = ({ getAllBooking, tours }) => {
-    useEffect(() => {
-        getAllBooking();
-        //eslint-disabled-next-line
-    }, [])
-    return (
-        <main className="main">
-        <div className="card-container">
-                { tours && tours.length > 0 &&
-                tours.map(tour => <Tour key={tour._id} tour={tour} />)
-             }
+  useEffect(() => {
+    getAllBooking();
+    //eslint-disabled-next-line
+  }, []);
+  return (
+    <main className="main">
+      <div className="card-container">
+        {tours &&
+          tours.length > 0 &&
+          tours.map((tour) => <Tour key={tour._id} tour={tour} />)}
       </div>
-  </main>
-    )
-}
-const mapStateToProps = state => ({
-    tours: state.bookings.toursBooked
-})
+    </main>
+  );
+};
+const mapStateToProps = (state) => ({
+  tours: state.bookings.toursBooked,
+});
 
-export default connect(mapStateToProps, { getAllBooking })(MyBookings)
+export default connect(mapStateToProps, { getAllBooking })(MyBookings);

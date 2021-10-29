@@ -1,4 +1,4 @@
-import { GET_BOOKINGS } from './../actions/types';
+import { GET_BOOKINGS } from './types';
 
 const initialState = {
   toursBooked: null,

@@ -13,13 +13,9 @@ const Header = ({ isAuthenticated, loadUser }) => {
       loadUser();
       console.log('Called the loadUser');
     }
-    // if(Cookies.get('jwt') !== '') {
-    //     loadUser();
-    //     console.log("Called the loadUser");
-    //   };
-
     //eslint-disable-next-line
   }, []);
+
   return (
     <header className="header">
       <a href="/" className="nav__el">

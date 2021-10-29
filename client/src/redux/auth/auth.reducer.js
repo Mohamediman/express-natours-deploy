@@ -3,10 +3,9 @@ import {
   AUTH_ERROR,
   CLEAR_USER,
   USER_LOGOUT,
-  AUTH_SUCCESS,
   UPDATE_CURRENT_USER,
   UPDATE_USER_PASSWORD,
-} from './../actions/types';
+} from './types';
 
 const initialState = {
   user: null,

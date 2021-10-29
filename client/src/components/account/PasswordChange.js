@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
-import { setAlert } from '../../actions/setAlert';
+import { setAlert } from '../../redux/alerts/setAlerts.action';
 import { changePassword } from '../../actions/auth';
 
 const PasswordResset = ({ setAlert, changePassword }) => {

@@ -83,9 +83,6 @@ export const register = (newUser) => async (dispatch) => {
 
 //==== Logout user
 export const logout = () => (dispatch) => {
-  console.log('LOgout called from the link....');
-  console.log('Remove the jwt from the broweer...');
-
   Cookies.remove('jwt');
   dispatch({ type: USER_LOGOUT });
 };
