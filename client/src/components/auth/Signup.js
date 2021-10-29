@@ -3,11 +3,18 @@ import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { setAlert } from '../../redux/alerts/setAlerts.action';
 
-import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { connect, useSelector } from 'react-redux';
 import { register } from '../../redux/auth/auth.action';
 import { selectAuthenticated } from '../../redux/auth/auth.selectors';
 
-const Signup = ({ isAuthenticated, register, setAlert }) => {
+const Signup = ({ register, setAlert }) => {
+  const structuredSelector = createStructuredSelector({
+    isAuthenticated: selectAuthenticated,
+  });
+
+  const { isAuthenticated } = useSelector(structuredSelector);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -37,7 +44,6 @@ const Signup = ({ isAuthenticated, register, setAlert }) => {
   }
   return (
     <div className="login-form">
-      {/* <Alert /> */}
       <h2 className="heading-secondary ma-bt-lg">Singup</h2>
       <form className="form form--login" onSubmit={(e) => onSubmit(e)}>
         <div className="form__group">
@@ -110,8 +116,5 @@ Signup.propTypes = {
   isAuthenticated: PropTypes.bool,
   register: PropTypes.func,
 };
-const mapStateToProps = (state) => ({
-  isAuthenticated: selectAuthenticated(state),
-});
 
-export default connect(mapStateToProps, { register, setAlert })(Signup);
+export default connect(null, { register, setAlert })(Signup);

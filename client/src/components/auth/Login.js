@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import Alert from '../../redux/alerts/setAlerts.action'
 
-import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { connect, useSelector } from 'react-redux';
 import { login } from '../../redux/auth/auth.action';
 import { selectAuthenticated } from '../../redux/auth/auth.selectors';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login }) => {
+  const structuredSelector = createStructuredSelector({
+    isAuthenticated: selectAuthenticated,
+  });
+  const { isAuthenticated } = useSelector(structuredSelector);
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -74,8 +79,8 @@ Login.propTypes = {
   login: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: selectAuthenticated(state),
-});
+// const mapStateToProps = (state) => ({
+//   isAuthenticated: selectAuthenticated(state),
+// });
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(null, { login })(Login);

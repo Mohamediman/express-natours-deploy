@@ -3,14 +3,21 @@ import { Link } from 'react-router-dom';
 
 import { createStructuredSelector } from 'reselect';
 
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { logout } from './../../redux/auth/auth.action';
 import {
   selectAuthenticated,
   selectAuthUser,
 } from '../../redux/auth/auth.selectors';
 
-const NavElement = ({ isAuthenticated, user, logout }) => {
+const NavElement = ({ logout }) => {
+  const structuredSelector = createStructuredSelector({
+    isAuthenticated: selectAuthenticated,
+    user: selectAuthUser,
+  });
+
+  const { isAuthenticated, user } = useSelector(structuredSelector);
+
   const userLinks = (
     <nav className="nav nav--user">
       <a href="/" className="nav__el nav__el--logout" onClick={logout}>
@@ -42,8 +49,8 @@ const NavElement = ({ isAuthenticated, user, logout }) => {
 
   return <Fragment>{!isAuthenticated ? guestLinks : userLinks}</Fragment>;
 };
-const mapStateToProps = createStructuredSelector({
-  isAuthenticated: selectAuthenticated,
-  user: selectAuthUser,
-});
-export default connect(mapStateToProps, { logout })(NavElement);
+// const mapStateToProps = createStructuredSelector({
+//   isAuthenticated: selectAuthenticated,
+//   user: selectAuthUser,
+// });
+export default connect(null, { logout })(NavElement);

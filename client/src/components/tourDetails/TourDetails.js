@@ -10,8 +10,11 @@ import TourMap from './TourMap';
 
 import LogoWhite from '../../img/logo-white.png';
 
+import { createStructuredSelector } from 'reselect';
 import { connect } from 'react-redux';
 import { bookTour, getTour } from '../../redux/tours/tours.action';
+import { selectAuthUser } from '../../redux/auth/auth.selectors';
+import { SelectAllTours } from '../../redux/tours/tours.selectors';
 
 const TourDetails = ({
   match,
@@ -110,9 +113,9 @@ TourDetails.propTypes = {
   isLoggedIn: PropTypes.func,
 };
 
-const mapStateToProps = (state) => ({
-  tours: state.tours,
-  user: state.auth.user,
+const mapStateToProps = createStructuredSelector({
+  tours: SelectAllTours,
+  user: selectAuthUser,
 });
 
 export default connect(mapStateToProps, { bookTour, getTour })(TourDetails);

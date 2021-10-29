@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import ImageUploading from 'react-images-uploading';
 
-import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import { connect, useSelector } from 'react-redux';
 import { updateCurrentUser } from '../../redux/auth/auth.action';
+import { selectAuthUser } from '../../redux/auth/auth.selectors';
 
-const UserAccountSettings = ({ user, updateCurrentUser }) => {
+const UserAccountSettings = ({ updateCurrentUser }) => {
+  const structuredSelector = createStructuredSelector({
+    user: selectAuthUser,
+  });
+  const { user } = useSelector(structuredSelector);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -61,7 +66,7 @@ const UserAccountSettings = ({ user, updateCurrentUser }) => {
           <img
             className="form__user-photo"
             src={`/img/users/${user.photo}`}
-            alt="User photo"
+            alt="User-profile"
           />
 
           <ImageUploading multiple value={photo} onChange={onFileChange}>
@@ -83,10 +88,8 @@ const UserAccountSettings = ({ user, updateCurrentUser }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
+// const mapStateToProps = (state) => ({
+//   user: state.auth.user,
+// });
 
-export default connect(mapStateToProps, { updateCurrentUser })(
-  UserAccountSettings
-);
+export default connect(null, { updateCurrentUser })(UserAccountSettings);
