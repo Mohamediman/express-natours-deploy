@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Tour from './Tour';
 
 import { connect } from 'react-redux';
-import { SelectAllTours } from '../../actions/tours.selectors';
+import { SelectAllTours } from '../../redux/tours/tours.selectors';
 
 const Tours = ({ tours }) => {
   return (

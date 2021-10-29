@@ -13,7 +13,7 @@ import TourMap from './TourMap';
 import LogoWhite from '../../img/logo-white.png';
 
 import { connect } from 'react-redux';
-import { bookTour, getTour } from '../../actions/tours';
+import { bookTour, getTour } from '../../redux/tours/tours.action';
 
 const TourDetails = ({
   match,

@@ -15,10 +15,10 @@ import Alert from './alerts/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 import { Provider } from 'react-redux';
-import { getAllTours, loadTour } from './actions/tours';
+import { getAllTours, loadTour } from './redux/tours/tours.action';
 import { loadUser } from './actions/auth';
 import setAuthtoken from './utils/SetAuthToken';
-import store from './Store';
+import store from './redux/Store';
 
 import './App.css';
 
