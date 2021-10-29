@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from './../../actions/auth';
+import { logout } from './../../redux/auth/auth.action';
 
 const NavElement = ({ auth: { isAuthenticated, user }, logout }) => {
   const userLinks = (

@@ -5,7 +5,7 @@ import SearchForm from './SearchForm';
 import LogoWhite from './../../img/logo-white.png';
 
 import { connect } from 'react-redux';
-import { loadUser } from '../../actions/auth';
+import { loadUser } from '../../redux/auth/auth.action';
 
 const Header = ({ isAuthenticated, loadUser }) => {
   useEffect(() => {

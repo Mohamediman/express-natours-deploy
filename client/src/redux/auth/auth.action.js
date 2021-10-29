@@ -9,7 +9,7 @@ import {
   UPDATE_USER_PASSWORD,
 } from './types';
 
-import { setAlert } from './setAlert';
+import { setAlert } from '../alerts/setAlerts.action';
 
 //=== Load User
 export const loadUser = () => async (dispatch) => {

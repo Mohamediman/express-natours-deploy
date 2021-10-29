@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { connect } from 'react-redux';
 import { setAlert } from '../../redux/alerts/setAlerts.action';
-import { changePassword } from '../../actions/auth';
+import { changePassword } from '../../redux/auth/auth.action';
 
 const PasswordResset = ({ setAlert, changePassword }) => {
   const [formData, setFormData] = useState({
