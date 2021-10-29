@@ -11,18 +11,23 @@ import TourMap from './TourMap';
 import LogoWhite from '../../img/logo-white.png';
 
 import { createStructuredSelector } from 'reselect';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { bookTour, getTour } from '../../redux/tours/tours.action';
 import { selectAuthUser } from '../../redux/auth/auth.selectors';
-import { SelectAllTours } from '../../redux/tours/tours.selectors';
+import {
+  SelectATour,
+  SelectTourLoading,
+} from '../../redux/tours/tours.selectors';
 
-const TourDetails = ({
-  match,
-  tours: { tour, loading },
-  user,
-  bookTour,
-  getTour,
-}) => {
+const TourDetails = ({ match, bookTour, getTour }) => {
+  const structuredSelector = createStructuredSelector({
+    tour: SelectATour,
+    loading: SelectTourLoading,
+    user: selectAuthUser,
+  });
+
+  const { tour, loading, user } = useSelector(structuredSelector);
+
   useEffect(() => {
     getTour(match.params.slug);
     //eslint-disable-next-line
@@ -113,9 +118,10 @@ TourDetails.propTypes = {
   isLoggedIn: PropTypes.func,
 };
 
-const mapStateToProps = createStructuredSelector({
-  tours: SelectAllTours,
-  user: selectAuthUser,
-});
+// const mapStateToProps = createStructuredSelector({
+//   tour: SelectATour,
+//   loading: SelectTourLoading,
+//   user: selectAuthUser,
+// });
 
-export default connect(mapStateToProps, { bookTour, getTour })(TourDetails);
+export default connect(null, { bookTour, getTour })(TourDetails);
