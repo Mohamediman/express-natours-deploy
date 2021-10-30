@@ -7,6 +7,7 @@ import TourFactsAndGuides from './TourFactsAndGuides';
 import TourReview from './TourReview';
 import TourSectionPictures from './TourSectionPictures';
 import TourMap from './TourMap';
+import Spinner from '../spinner/spinner';
 
 import LogoWhite from '../../img/logo-white.png';
 
@@ -34,42 +35,46 @@ const TourDetails = ({ match, bookTour, getTour }) => {
   }, []);
   return (
     <Fragment>
-      {tour && !loading && <TourHeader tour={tour} />}
+      {tour ? <TourHeader tour={tour} /> : <Spinner />}
 
       <section className="section-description">
-        {tour && !loading && <TourFactsAndGuides tour={tour} />}
-        {tour && <TourDescription tour={tour} />}
+        {tour ? <TourFactsAndGuides tour={tour} /> : <Spinner />}
+        {tour ? <TourDescription tour={tour} /> : <Spinner />}
       </section>
       <section className="section-pictures">
-        {tour &&
-          !loading &&
-          tour.images.length > 0 &&
+        {tour && tour.images.length > 0 ? (
           tour.images.map((image) => {
             let uniqueKey = uuidv4();
             return <TourSectionPictures key={uniqueKey} image={image} />;
-          })}
+          })
+        ) : (
+          <Spinner />
+        )}
       </section>
 
-      {tour && (
+      {tour ? (
         <section className="section-map">
           <div id="map"></div>
           <TourMap tour={tour} />
         </section>
+      ) : (
+        <Spinner />
       )}
 
       <section className="section-reviews">
         <div className="reviews">
-          {tour &&
-            !loading &&
-            tour.reviews.length > 0 &&
+          {tour && tour.reviews.length > 0 ? (
             tour.reviews.map((review) => (
               <TourReview key={review._id} review={review} />
-            ))}
+            ))
+          ) : (
+            <Spinner />
+          )}
         </div>
       </section>
 
       <section className="section-cta">
-        {tour && !loading && (
+        {tour ? (
           <div className="cta">
             <div className="cta__img cta__img--logo">
               <img src={LogoWhite} alt="Natours logo" />
@@ -105,6 +110,8 @@ const TourDetails = ({ match, bookTour, getTour }) => {
               )}
             </div>
           </div>
+        ) : (
+          <Spinner />
         )}
       </section>
     </Fragment>
@@ -117,11 +124,5 @@ TourDetails.propTypes = {
   bookTour: PropTypes.func,
   isLoggedIn: PropTypes.func,
 };
-
-// const mapStateToProps = createStructuredSelector({
-//   tour: SelectATour,
-//   loading: SelectTourLoading,
-//   user: selectAuthUser,
-// });
 
 export default connect(null, { bookTour, getTour })(TourDetails);

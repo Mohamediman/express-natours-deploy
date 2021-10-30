@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import {
   ErrorImageOverlay,
@@ -6,7 +6,7 @@ import {
   ErrorImageText,
 } from './error-boundary.styles';
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
   constructor() {
     super();
 
