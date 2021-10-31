@@ -1,12 +1,17 @@
 import React from 'react';
+import { createStructuredSelector } from 'reselect';
 import PropTypes from 'prop-types';
 import Tour from './Tour';
-import Spinner from '../spinner/spinner';
+import Spinner from '../spinner/Spinner';
 
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { SelectAllTours } from '../../redux/tours/tours.selectors';
 
-const Tours = ({ tours }) => {
+const Tours = () => {
+  const structuredSelector = createStructuredSelector({
+    tours: SelectAllTours,
+  });
+  const { tours } = useSelector(structuredSelector);
   return (
     <main className="main">
       <div className="card-container">
@@ -23,8 +28,5 @@ const Tours = ({ tours }) => {
 Tours.propTypes = {
   tours: PropTypes.array,
 };
-const mapStateToProps = (state) => ({
-  tours: SelectAllTours(state),
-});
 
-export default connect(mapStateToProps)(Tours);
+export default connect(null)(Tours);

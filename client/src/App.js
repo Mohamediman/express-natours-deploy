@@ -1,20 +1,15 @@
-import React, { useEffect, lazy, Suspense, Fragment } from 'react';
+import React, { lazy, Suspense, Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import { connect } from 'react-redux';
 
 import './App.css';
 
 import Footer from './components/footer/Footer';
 import PrivateRoute from './components/routing/PrivateRoute';
 
-import { getAllTours, loadTour } from './redux/tours/tours.action';
-import { loadUser } from './redux/auth/auth.action';
 import Alert from './alerts/Alert';
-import Headers from './components/header/Header';
-import setAuthtoken from './utils/SetAuthToken';
+import Header from './components/header/Header';
 import ErrorBoundary from './components/error-boundary/error-boundary';
-import Spinner from './components/spinner/spinner';
+import Spinner from './components/spinner/Spinner';
 
 const Tours = lazy(() => import('./components/tours/Tours'));
 const TourDetails = lazy(() => import('./components/tourDetails/TourDetails'));
@@ -23,22 +18,10 @@ const Signup = lazy(() => import('./components/auth/Signup'));
 const Account = lazy(() => import('./components/account/Account'));
 const MyBookings = lazy(() => import('./components/bookings/MyBookings'));
 
-const App = ({ loadUser, getAllTours, loadTour }) => {
-  if (Cookies.get('jwt')) {
-    setAuthtoken(Cookies.get('jwt'));
-    loadUser();
-  }
-
-  useEffect(() => {
-    getAllTours();
-    loadTour();
-
-    // eslint-disable-next-line
-  }, []);
-
+const App = () => {
   return (
     <Fragment>
-      <Headers />
+      <Header />
       <Alert />
       <Switch>
         <ErrorBoundary>
@@ -61,4 +44,4 @@ const App = ({ loadUser, getAllTours, loadTour }) => {
   );
 };
 
-export default connect(null, { loadUser, getAllTours, loadTour })(App);
+export default App;

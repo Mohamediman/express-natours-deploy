@@ -33,9 +33,10 @@ const Login = ({ login }) => {
     return <Redirect to="/" />;
   }
 
+  /* <Alert /> */
+
   return (
     <div className="login-form">
-      {/* <Alert /> */}
       <h2 className="heading-secondary ma-bt-lg">Login into your account</h2>
       <form className="form form--login" onSubmit={(e) => onSubmit(e)}>
         <div className="form__group">

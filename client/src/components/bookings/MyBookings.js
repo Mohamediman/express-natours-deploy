@@ -8,7 +8,8 @@ import { selectMybookings } from '../../redux/bookings/bookings.selectors';
 const MyBookings = ({ getAllBooking, tours }) => {
   useEffect(() => {
     getAllBooking();
-    //eslint-disabled-next-line
+
+    //eslint-disable-next-line
   }, []);
   return (
     <main className="main">

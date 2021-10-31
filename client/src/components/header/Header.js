@@ -4,16 +4,21 @@ import { Link } from 'react-router-dom';
 import NavElement from './NavElement';
 import LogoWhite from './../../img/logo-white.png';
 
+import setAuthtoken from '../../utils/SetAuthToken';
+
 import { connect } from 'react-redux';
 import { loadUser } from '../../redux/auth/auth.action';
-import { selectAuthenticated } from '../../redux/auth/auth.selectors';
+import { getAllTours } from '../../redux/tours/tours.action';
 
-const Header = ({ isAuthenticated, loadUser }) => {
+const Header = ({ loadUser, getAllTours }) => {
+  if (Cookies.get('jwt')) {
+    setAuthtoken(Cookies.get('jwt'));
+    loadUser();
+  }
+
   useEffect(() => {
-    if (Cookies.get('jwt')) {
-      loadUser();
-      console.log('Called the loadUser');
-    }
+    getAllTours();
+
     //eslint-disable-next-line
   }, []);
 
@@ -31,7 +36,5 @@ const Header = ({ isAuthenticated, loadUser }) => {
     </header>
   );
 };
-const mapStateToProps = (state) => ({
-  isAuthenticated: selectAuthenticated(state),
-});
-export default connect(mapStateToProps, { loadUser })(Header);
+
+export default connect(null, { loadUser, getAllTours })(Header);

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import { createStructuredSelector } from 'reselect';
-import Spinner from '../spinner/spinner';
+import Spinner from '../spinner/Spinner';
 
 import { connect, useSelector } from 'react-redux';
 import { logout } from './../../redux/auth/auth.action';
@@ -21,9 +21,9 @@ const NavElement = ({ logout }) => {
 
   const userLinks = (
     <nav className="nav nav--user">
-      <a href="/" className="nav__el nav__el--logout" onClick={logout}>
+      <Link to="/" className="nav__el nav__el--logout" onClick={logout}>
         Log Out
-      </a>
+      </Link>
       <Link to="/me" className="nav__el">
         {user ? (
           <img

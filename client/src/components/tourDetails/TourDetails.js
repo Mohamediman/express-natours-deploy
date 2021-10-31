@@ -7,27 +7,22 @@ import TourFactsAndGuides from './TourFactsAndGuides';
 import TourReview from './TourReview';
 import TourSectionPictures from './TourSectionPictures';
 import TourMap from './TourMap';
-import Spinner from '../spinner/spinner';
-
-import LogoWhite from '../../img/logo-white.png';
+import Spinner from '../spinner/Spinner';
+import TourDetailCTA from './TourDetailCTA';
 
 import { createStructuredSelector } from 'reselect';
 import { connect, useSelector } from 'react-redux';
 import { bookTour, getTour } from '../../redux/tours/tours.action';
 import { selectAuthUser } from '../../redux/auth/auth.selectors';
-import {
-  SelectATour,
-  SelectTourLoading,
-} from '../../redux/tours/tours.selectors';
+import { SelectATour } from '../../redux/tours/tours.selectors';
 
-const TourDetails = ({ match, bookTour, getTour }) => {
+const TourDetails = ({ match, getTour }) => {
   const structuredSelector = createStructuredSelector({
     tour: SelectATour,
-    loading: SelectTourLoading,
     user: selectAuthUser,
   });
 
-  const { tour, loading, user } = useSelector(structuredSelector);
+  const { tour, user } = useSelector(structuredSelector);
 
   useEffect(() => {
     getTour(match.params.slug);
@@ -41,6 +36,7 @@ const TourDetails = ({ match, bookTour, getTour }) => {
         {tour ? <TourFactsAndGuides tour={tour} /> : <Spinner />}
         {tour ? <TourDescription tour={tour} /> : <Spinner />}
       </section>
+
       <section className="section-pictures">
         {tour && tour.images.length > 0 ? (
           tour.images.map((image) => {
@@ -54,7 +50,7 @@ const TourDetails = ({ match, bookTour, getTour }) => {
 
       {tour ? (
         <section className="section-map">
-          <div id="map"></div>
+          <div id="map"> </div>
           <TourMap tour={tour} />
         </section>
       ) : (
@@ -73,47 +69,7 @@ const TourDetails = ({ match, bookTour, getTour }) => {
         </div>
       </section>
 
-      <section className="section-cta">
-        {tour ? (
-          <div className="cta">
-            <div className="cta__img cta__img--logo">
-              <img src={LogoWhite} alt="Natours logo" />
-            </div>
-            <img
-              src="/img/tours/tour-5-2.jpg"
-              alt="natours"
-              className="cta__img cta__img--1"
-            />
-            <img
-              src="/img/tours/tour-5-1.jpg"
-              alt="natours images"
-              className="cta__img cta__img--2"
-            />
-
-            <div className="cta__content">
-              <h2 className="heading-secondary">What are you waiting for?</h2>
-              <p className="cta__text">
-                {tour && tour.duration} days. 1 adventure. Infinite memories.
-                Make it yours today!
-              </p>
-              {user ? (
-                <button
-                  className="btn btn--green span-all-rows"
-                  onClick={(e) => bookTour(tour.id)}
-                >
-                  Book tour now!
-                </button>
-              ) : (
-                <a href="/login" className="btn btn--green span-all-rows">
-                  Login to Book tour
-                </a>
-              )}
-            </div>
-          </div>
-        ) : (
-          <Spinner />
-        )}
-      </section>
+      <TourDetailCTA tour={tour} user={user} bookTour={bookTour} />
     </Fragment>
   );
 };
