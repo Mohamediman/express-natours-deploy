@@ -14,9 +14,9 @@ const TourFooter = ({ tour }) => {
           rating ({tour.ratingsQuantity})
         </span>
       </p>
-      <Link to={`/tour/${tour.slug}`} className="btn btn--green btn--small">
+      <a href={`/tour/${tour.slug}`} className="btn btn--green btn--small">
         Details
-      </Link>
+      </a>
     </div>
   );
 };
