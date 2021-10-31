@@ -45,7 +45,7 @@ export const login = (email, password) => async (dispatch) => {
     Cookies.set('jwt', res.data.token, { expires: 7 });
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      payload: res.data.data.user,
     });
   } catch (err) {
     // dispatch(setAlert(err.response.data.message, 'error'))
@@ -71,7 +71,7 @@ export const register = (newUser) => async (dispatch) => {
     Cookies.set('jwt', res.data.token, { expires: 7 });
     dispatch({
       type: USER_LOADED,
-      payload: res.data,
+      payload: res.data.data.user,
     });
   } catch (err) {
     dispatch(setAlert(err.response.data.message, 'error'));

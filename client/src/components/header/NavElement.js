@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 import { createStructuredSelector } from 'reselect';
+import Spinner from '../spinner/spinner';
 
 import { connect, useSelector } from 'react-redux';
 import { logout } from './../../redux/auth/auth.action';
@@ -24,12 +25,14 @@ const NavElement = ({ logout }) => {
         Log Out
       </a>
       <Link to="/me" className="nav__el">
-        {user && (
+        {user ? (
           <img
             src={`/img/users/${user.photo}`}
             alt="user"
             className="nav__user-img"
           />
+        ) : (
+          <Spinner />
         )}
         {user && user.name && <span>{user.name.split(' ')[0]}</span>}
       </Link>
@@ -49,8 +52,5 @@ const NavElement = ({ logout }) => {
 
   return <Fragment>{!isAuthenticated ? guestLinks : userLinks}</Fragment>;
 };
-// const mapStateToProps = createStructuredSelector({
-//   isAuthenticated: selectAuthenticated,
-//   user: selectAuthUser,
-// });
+
 export default connect(null, { logout })(NavElement);

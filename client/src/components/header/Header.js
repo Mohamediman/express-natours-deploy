@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { Link } from 'react-router-dom';
 import NavElement from './NavElement';
-import SearchForm from './SearchForm';
 import LogoWhite from './../../img/logo-white.png';
 
 import { connect } from 'react-redux';
@@ -19,17 +19,13 @@ const Header = ({ isAuthenticated, loadUser }) => {
 
   return (
     <header className="header">
-      <a href="/" className="nav__el">
+      <Link to="/" className="nav__el">
         All tours
-      </a>
-      {/* { isAuthenticated &&
-                 <SearchForm /> 
-            } */}
-
+      </Link>
       <div className="header__logo">
-        <a href="/">
+        <Link to="/">
           <img src={LogoWhite} alt="Natours logo" />
-        </a>
+        </Link>
       </div>
       <NavElement />
     </header>
