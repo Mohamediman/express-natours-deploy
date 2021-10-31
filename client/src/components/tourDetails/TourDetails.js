@@ -16,7 +16,7 @@ import { bookTour, getTour } from '../../redux/tours/tours.action';
 import { selectAuthUser } from '../../redux/auth/auth.selectors';
 import { SelectATour } from '../../redux/tours/tours.selectors';
 
-const TourDetails = ({ match, getTour }) => {
+const TourDetails = ({ match, getTour, bookTour }) => {
   const structuredSelector = createStructuredSelector({
     tour: SelectATour,
     user: selectAuthUser,

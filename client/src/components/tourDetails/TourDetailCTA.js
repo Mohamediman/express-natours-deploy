@@ -30,7 +30,7 @@ const TourDetailCTA = ({ tour, user, bookTour }) => {
             {user ? (
               <button
                 className="btn btn--green span-all-rows"
-                onClick={(e) => bookTour(tour.id)}
+                onClick={() => bookTour(tour.id)}
               >
                 Book tour now!
               </button>
