@@ -34,10 +34,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "craco build"
+    "build": "craco build",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
-  "heroku-run-build-script": false,
-
+  "heroku-run-build-script": true,
   "eslintConfig": {
     "extends": [
       "react-app",
