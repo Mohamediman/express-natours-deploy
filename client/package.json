@@ -34,7 +34,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "craco build",
+    "buildss": "craco build",
+    "build": "webpack",
     "heroku-postbuild": "echo Skip build on Heroku"
   },
   "heroku-run-build-script": true,
