@@ -33,7 +33,11 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start"
+    "start": "react-scripts start",
+    "build": "craco build",
+    "heroku-prebuild": "Heroku prebuild is running",
+    "heroku-postbuild": "Heroku postbuild is running",
+    "heroku-cleanup": "Heroku cleanup is running"
   },
   "eslintConfig": {
     "extends": [
